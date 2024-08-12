@@ -22,6 +22,7 @@ export class UserService {
     const encryptedPhone = this.encryptionService.encrypt(phone);
     return await this.userRepository.findOne({
       where: { phone: encryptedPhone },
+      select: ['id', 'email', 'name', 'address'],
     });
   }
 
@@ -33,9 +34,6 @@ export class UserService {
     });
     return this.userRepository.save(newUser);
   }
-  // async update(user: Partial<User>): Promise<void> {
-  //   this.userRepository.update(user.id, { ...user });
-  // }
 
   async update(id: string, user: Partial<User>): Promise<User> {
     const findUser = await this.userRepository.findOneBy({ id });
