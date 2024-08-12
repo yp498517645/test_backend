@@ -33,8 +33,13 @@ export class UserController {
     return this.userService.create(user);
   }
 
-  @Delete('delete/:id')
+  @Post('delete/:id')
   remove(@Param('id') id: string): Promise<void> {
     return this.userService.remove(Number(id));
+  }
+
+  @Post('update')
+  update(@Body() user: Partial<User>): Promise<User> {
+    return this.userService.update(user.id, user);
   }
 }
