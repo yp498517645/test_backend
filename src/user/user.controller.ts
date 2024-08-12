@@ -20,7 +20,7 @@ export class UserController {
   }
 
   @Get('phone/:phone')
-  async findByPhone(@Param('email') phone: string): Promise<User> {
+  async findByPhone(@Param('phone') phone: string): Promise<User> {
     const user = await this.userService.findByPhone(phone);
     if (!user) {
       throw new NotFoundException('查无此用户信息');
