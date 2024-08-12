@@ -8,7 +8,7 @@ export class User {
   @Column({ length: 100 })
   name: string;
 
-  @Index() // 添加索引
+  @Column({ unique: true })
   email: string;
 
   @Column()
