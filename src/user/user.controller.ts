@@ -34,8 +34,10 @@ export class UserController {
   }
 
   @Post('delete')
-  remove(@Body() id: string): Promise<{ msg: string; status: string }> {
-    return this.userService.remove(Number(id));
+  remove(
+    @Body() user: Partial<User>,
+  ): Promise<{ msg: string; status: string }> {
+    return this.userService.remove(Number(user.id));
   }
 
   @Post('update')
