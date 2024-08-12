@@ -46,7 +46,12 @@ export class UserService {
     return this.userRepository.save(user);
   }
 
-  async remove(id: number): Promise<void> {
-    await this.userRepository.delete(id);
+  async remove(id: number): Promise<{ msg: string; status: string }> {
+    try {
+      await this.userRepository.delete(id);
+      return Promise.resolve({ msg: '删除成功', status: 'success' });
+    } catch (error) {
+      return Promise.reject({ msg: '删除失败', status: 'error' });
+    }
   }
 }

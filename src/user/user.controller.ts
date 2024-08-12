@@ -34,7 +34,7 @@ export class UserController {
   }
 
   @Post('delete/:id')
-  remove(@Param('id') id: string): Promise<void> {
+  remove(@Param('id') id: string): Promise<{ msg: string; status: string }> {
     return this.userService.remove(Number(id));
   }
 
