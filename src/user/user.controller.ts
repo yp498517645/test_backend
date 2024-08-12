@@ -25,7 +25,7 @@ export class UserController {
     if (!user) {
       throw new NotFoundException('查无此用户信息');
     }
-    return [user];
+    return user;
   }
 
   @Post('/add')

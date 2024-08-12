@@ -18,9 +18,9 @@ export class UserService {
     });
   }
 
-  async findByPhone(phone: string): Promise<User | undefined> {
+  async findByPhone(phone: string): Promise<User[]> {
     const encryptedPhone = this.encryptionService.encrypt(phone);
-    return await this.userRepository.findOne({
+    return await this.userRepository.find({
       where: { phone: encryptedPhone },
     });
   }
