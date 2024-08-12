@@ -12,8 +12,9 @@ import { UserModule } from './user/user.module';
       password: 'yp15905755107', // MySQL 密码
       database: 'test_db', // 要连接的数据库名称
       entities: [__dirname + '/**/*.entity{.ts,.js}'], // 实体文件路径
-      synchronize: true, // 自动同步数据库结构, 在生产环境中建议设为 false
+      synchronize: false, // 自动同步数据库结构, 在生产环境中建议设为 false
       logging: true, // 启用 TypeORM 日志
+      autoLoadEntities: true, // 自动加载实体
     }),
     UserModule,
   ],
