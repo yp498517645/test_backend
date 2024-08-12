@@ -13,36 +13,23 @@ export class UserService {
   ) {}
 
   findAll(): Promise<User[]> {
-    return this.userRepository.find();
-    // return Promise.resolve([
-    //   {
-    //     id: '1',
-    //     name: 'asd',
-    //     email: 'asdasd@qq.com',
-    //     phone: '13967672534',
-    //     address: 'sss',
-    //   },
-    // ]);
-  }
-
-  async findByEmail(email: string): Promise<User | undefined> {
-    const encryptedPhone = this.encryptionService.encrypt(email);
-    return await this.userRepository.findOne({
-      where: { email: encryptedPhone },
+    return this.userRepository.find({
+      select: ['id', 'email', 'name', 'address'],
     });
   }
 
-  // async findUserByPhone(phone: string): Promise<User | undefined> {
-  //   const users = await this.userRepository.find();
-  //   const encryptedPhone = this.encryptionService.encrypt(phone);
-  //   return users.find((user) => user.email === encryptedPhone);
-  // }
+  async findByPhone(phone: string): Promise<User | undefined> {
+    const encryptedPhone = this.encryptionService.encrypt(phone);
+    return await this.userRepository.findOne({
+      where: { phone: encryptedPhone },
+    });
+  }
 
   async create(user: Partial<User>): Promise<User> {
-    const encryptedPhone = this.encryptionService.encrypt(user.email);
+    const encryptedPhone = this.encryptionService.encrypt(user.phone);
     const newUser = this.userRepository.create({
       ...user,
-      email: encryptedPhone,
+      phone: encryptedPhone,
     });
     return this.userRepository.save(newUser);
   }
