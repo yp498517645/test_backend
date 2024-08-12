@@ -22,7 +22,6 @@ export class UserService {
     const encryptedPhone = this.encryptionService.encrypt(phone);
     return await this.userRepository.findOne({
       where: { phone: encryptedPhone },
-      select: ['id', 'email', 'name', 'address'],
     });
   }
 
