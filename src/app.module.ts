@@ -8,10 +8,10 @@ import { LoggingInterceptor } from './logger/logger.interceptor';
 
 @Module({
   imports: [
-    LoggerModule,
     ConfigModule.forRoot({
       isGlobal: true, // 使 ConfigModule 在整个应用程序中全局可用
     }),
+    LoggerModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],

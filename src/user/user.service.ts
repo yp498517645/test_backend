@@ -3,15 +3,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
 import { EncryptionService } from '../encryption/encryption.service';
-import { AppService } from 'src/app.service';
 
 @Injectable()
 export class UserService {
+  private readonly logger = new Logger(UserService.name); // 直接在类属性中实例化Logger
+
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
     private readonly encryptionService: EncryptionService,
-    private readonly logger = new Logger(AppService.name),
   ) {}
 
   findAll(): Promise<User[]> {
