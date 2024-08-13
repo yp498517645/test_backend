@@ -1,8 +1,9 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
 import { EncryptionService } from '../encryption/encryption.service';
+import { AppService } from 'src/app.service';
 
 @Injectable()
 export class UserService {
@@ -10,9 +11,11 @@ export class UserService {
     @InjectRepository(User)
     private userRepository: Repository<User>,
     private readonly encryptionService: EncryptionService,
+    private readonly logger = new Logger(AppService.name),
   ) {}
 
   findAll(): Promise<User[]> {
+    this.logger.log('findAll');
     return this.userRepository.find({
       select: ['id', 'email', 'name', 'address'],
     });

@@ -13,6 +13,7 @@ async function bootstrap() {
     .build();
 
   // 生成 Swagger 文档
+
   const document = SwaggerModule.createDocument(app, config);
 
   // 设置 Swagger UI 路径
