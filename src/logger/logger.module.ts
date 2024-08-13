@@ -21,8 +21,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
             logGroupName: 'demo-group', // 替换为你的CloudWatch日志组名
             logStreamName: () => `demo-instance-${Date.now()}`, // 替换为你的CloudWatch日志流名
             awsRegion: 'eu-north-1', // 替换为你使用的AWS区域
-            awsAccessKeyId: configService.get<string>('awsSecretKey'), // 替换为你的AWS访问密钥ID
-            awsSecretKey: configService.get<string>('awsAccessKeyId'), // 替换为你的AWS密钥
+            awsAccessKeyId: configService.get<string>('awsAccessKeyId'), // 替换为你的AWS访问密钥ID
+            awsSecretKey: configService.get<string>('awsSecretKey'), // 替换为你的AWS密钥
             jsonMessage: true, // 确保日志以JSON格式记录
           }),
         ],
