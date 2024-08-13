@@ -14,7 +14,7 @@ import { AppService } from './app.service';
       useFactory: (configService: ConfigService) => ({
         type: 'mysql',
         host: 'database-1.c1aagmo0guj6.eu-north-1.rds.amazonaws.com', // MySQL 服务器地址
-        port: 3396,
+        port: 3306,
         username: 'admin', // MySQL 用户名
         password: configService.get<string>('mysql_pwd'),
         database: 'test_db', // 要连接的数据库名称
