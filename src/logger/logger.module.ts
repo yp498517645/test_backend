@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { WinstonModule } from 'nest-winston';
 import * as winston from 'winston';
-import WinstonCloudWatch from 'winston-cloudwatch';
+import * as WinstonCloudWatch from 'winston-cloudwatch';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
