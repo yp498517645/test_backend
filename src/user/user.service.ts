@@ -19,6 +19,7 @@ export class UserService {
   }
 
   async findByPhone(phone: string): Promise<User[]> {
+    console.log('phone', phone);
     const encryptedPhone = this.encryptionService.encrypt(phone);
     if (!phone || phone === '') {
       return this.userRepository.find({
