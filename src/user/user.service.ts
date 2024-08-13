@@ -20,6 +20,9 @@ export class UserService {
 
   async findByPhone(phone: string): Promise<User[]> {
     const encryptedPhone = this.encryptionService.encrypt(phone);
+    if (!phone) {
+      return this.findAll();
+    }
     return await this.userRepository.find({
       select: ['id', 'email', 'address', 'name'], // 仅选择这些字段
       where: { phone: encryptedPhone },
